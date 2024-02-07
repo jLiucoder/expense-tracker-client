@@ -11,10 +11,10 @@ function App() {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          `http://${process.env.REACT_APP_HOST_IP}:8080/total`
+          `https://${process.env.REACT_APP_HOST_IP}:8080/total`
         );
         const list = await axios.get(
-          `http://${process.env.REACT_APP_HOST_IP}:8080/totalList`
+          `https://${process.env.REACT_APP_HOST_IP}:8080/totalList`
         );
         setTotal(res.data[0].total);
         setTotalList(list.data);
@@ -29,7 +29,7 @@ function App() {
     try {
       console.log(index);
       const res = await axios.delete(
-        `http://${process.env.REACT_APP_HOST_IP}:8080/`,
+        `https://${process.env.REACT_APP_HOST_IP}:8080/`,
         {
           data: { index: index },
         }
