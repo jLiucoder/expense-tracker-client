@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { baseURL } from "./App";
 function ExpenseForm() {
   const [formData, setFormData] = useState({ item: "", amount: "" });
 
@@ -13,7 +14,7 @@ function ExpenseForm() {
     // You can perform any action with formData here, e.g., send it to the server
     const postData = async () => {
       try {
-        const res = await axios.post("http://localhost:8080/", formData);
+        const res = await axios.post(`${baseURL}/`, formData);
         console.log("res", res);
       } catch (error) {
         console.log("error", error);

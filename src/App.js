@@ -4,18 +4,15 @@ import { useEffect, useState } from "react";
 import ExpenseForm from "./form";
 import DeleteIcon from "@mui/icons-material/Delete";
 
+export const baseURL = `https://${process.env.REACT_APP_HOST_IP}`;
 function App() {
   const [total, setTotal] = useState(0);
   const [totalList, setTotalList] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(
-          `https://${process.env.REACT_APP_HOST_IP}:443/total`
-        );
-        const list = await axios.get(
-          `https://${process.env.REACT_APP_HOST_IP}:443/totalList`
-        );
+        const res = await axios.get(`${baseURL}/total`);
+        const list = await axios.get(`${baseURL}/totalList`);
         setTotal(res.data[0].total);
         setTotalList(list.data);
       } catch (error) {
@@ -28,12 +25,9 @@ function App() {
   const deleteItem = async (index) => {
     try {
       console.log(index);
-      const res = await axios.delete(
-        `https://${process.env.REACT_APP_HOST_IP}:443/`,
-        {
-          data: { index: index },
-        }
-      );
+      const res = await axios.delete(`${baseURL}`, {
+        data: { index: index },
+      });
       console.log("res", res);
     } catch (error) {
       console.log("error", error);
